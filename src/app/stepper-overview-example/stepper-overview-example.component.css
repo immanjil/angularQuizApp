@@ -1,0 +1,32 @@
+.mat-stepper-horizontal {
+  margin-top: 8px;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}
+
+.example-radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+}
+
+.example-radio-button {
+  margin: 5px;
+}
+body {
+  background-color: lightblue;
+}
+.mat-stepper-horizontal, .mat-stepper-vertical {
+  background-color: darkgreen;
+}
+
+.mat-step-header .mat-step-label.mat-step-label-active {
+  color: green;
+}
+
+.error--message {
+  color: #d8000c;
+}
+

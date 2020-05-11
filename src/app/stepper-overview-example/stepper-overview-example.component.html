@@ -1,0 +1,136 @@
+<!-- Header -->
+<app-header></app-header>
+
+<body>
+<button (click)="isLinear = !isLinear" *ngIf="false" class="button-quiz" id="toggle-linear" mat-raised-button>
+  {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+</button>
+<mat-horizontal-stepper #stepper [linear]="isLinear">
+  <!--firstFormGroup-->
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Question 1</ng-template>
+      <label id="firstFormGroup-radio-group-label">{{f1.question.value}}</label>
+      <mat-radio-group
+        aria-labelledby="firstFormGroup-radio-group-label"
+        class="example-radio-group"
+        formControlName="answer"
+      >
+        <mat-radio-button *ngFor="let season of f1.answerOptions.value" [value]="season.value"
+                          class="example-radio-button">
+          {{season.viewValue}}
+        </mat-radio-button>
+      </mat-radio-group>
+      <div *ngIf="f1.answer.invalid && (f1.answer.dirty || f1.answer.touched)"
+           class="error--message">
+        <div *ngIf="f1.answer.errors.required">
+          Please choose an answer.
+        </div>
+      </div>
+      <div *ngIf="debug">Your favorite season is: {{f1.answer.value}}</div>
+      <div>
+        <button (click)="checkAnswer(1)" class="button-quiz" mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <!--secondFormGroup-->
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Question 2</ng-template>
+      <label id="example-radio-group-label">{{f2.question.value}}</label>
+      <mat-radio-group
+        aria-labelledby="example-radio-group-label"
+        class="example-radio-group"
+        formControlName="answer"
+      >
+        <mat-radio-button *ngFor="let season of f2.answerOptions.value" [value]="season.value"
+                          class="example-radio-button">
+          {{season.viewValue}}
+        </mat-radio-button>
+      </mat-radio-group>
+      <div *ngIf="f2.answer.invalid && (f2.answer.dirty || f2.answer.touched)"
+           class="error--message">
+        <div *ngIf="f2.answer.errors.required">
+          Please choose an answer.
+        </div>
+      </div>
+      <div *ngIf="debug">Your favorite season is: {{f2.answer.value}}</div>
+      <div>
+        <button class="button-quiz" mat-button matStepperPrevious>Back</button> &nbsp;&nbsp;&nbsp;
+        <button (click)="checkAnswer(2)" class="button-quiz" mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <!--thirdFormGroup-->
+  <mat-step [stepControl]="thirdFormGroup">
+    <form [formGroup]="thirdFormGroup">
+      <ng-template matStepLabel>Question 2</ng-template>
+      <label id="third-radio-group-label">{{f3.question.value}}</label>
+      <mat-radio-group
+        aria-labelledby="third-radio-group-label"
+        class="example-radio-group"
+        formControlName="answer"
+      >
+        <mat-radio-button *ngFor="let season of f3.answerOptions.value" [value]="season.value"
+                          class="example-radio-button">
+          {{season.viewValue}}
+        </mat-radio-button>
+      </mat-radio-group>
+      <div *ngIf="f3.answer.invalid && (f3.answer.dirty || f3.answer.touched)"
+           class="error--message">
+        <div *ngIf="f3.answer.errors.required">
+          Please choose an answer.
+        </div>
+      </div>
+      <div *ngIf="debug">Your favorite season is: {{f3.answer.value}}</div>
+      <div>
+        <button class="button-quiz" mat-button matStepperPrevious>Back</button> &nbsp;&nbsp;&nbsp;
+        <button (click)="checkAnswer(3)" class="button-quiz" mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <!--fourthFormGroup-->
+  <mat-step [stepControl]="fourthFormGroup">
+    <form [formGroup]="fourthFormGroup">
+      <ng-template matStepLabel>Question 2</ng-template>
+      <label id="fourth-radio-group-label">{{f4.question.value}}</label>
+      <mat-radio-group
+        aria-labelledby="fourth-radio-group-label"
+        class="example-radio-group"
+        formControlName="answer"
+      >
+        <mat-radio-button *ngFor="let season of f4.answerOptions.value" [value]="season.value"
+                          class="example-radio-button">
+          {{season.viewValue}}
+        </mat-radio-button>
+      </mat-radio-group>
+      <div *ngIf="f4.answer.invalid && (f4.answer.dirty || f4.answer.touched)"
+           class="error--message">
+        <div *ngIf="f4.answer.errors.required">
+          Please choose an answer.
+        </div>
+      </div>
+      <div *ngIf="debug">Your favorite season is: {{f4.answer.value}}</div>
+      <div>
+        <button class="button-quiz" mat-button matStepperPrevious>Back</button> &nbsp;&nbsp;&nbsp;
+        <button (click)="checkAnswer(4)" class="button-quiz" mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+
+  <mat-step>
+    <ng-template matStepLabel>Results</ng-template>
+    <h1>Quiz Complete</h1>
+    <h2>Sore: {{this.totalPoints}}</h2>
+    <h2>Correct Answers: {{totalCorrectAnswers}} of 4</h2>
+    <div>
+      <button (click)="ngOnInit();stepper.reset()" class="button-quiz" mat-button>Restart Quiz</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
+
+</body>
